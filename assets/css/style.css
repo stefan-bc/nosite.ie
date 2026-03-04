@@ -319,10 +319,17 @@ nav.navbar.fixed-top.scrolled {
   white-space: nowrap;
 }
 
+.ticker-inner {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 25s linear infinite;
+}
+
 .ticker-track {
-  display: inline-flex;
+  display: flex;
   gap: 24px;
-  animation: ticker-scroll 20s linear infinite;
+  padding-right: 24px;
+  flex-shrink: 0;
 }
 
 .ticker-track span {
