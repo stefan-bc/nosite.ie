@@ -1,779 +1,329 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nosite — Web Design for Dublin Businesses</title>
-  <meta name="description" content="No website? We fix that. Fast, affordable websites for small businesses in Dublin. Get found by your customers." />
-  <link rel="canonical" href="https://nosite.ie" />
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nosite — Professional websites for Irish businesses. Fast, affordable, Google-ready.">
+  <meta name="theme-color" content="#111111">
+  <title>Nosite — Dublin Web Design</title>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Nosite Web Design" />
-  <meta property="og:description" content="No website? We fix that. Fast, affordable websites for small businesses in Dublin." />
-  <meta property="og:url" content="https://nosite.ie" />
-  <meta property="og:type" content="website" />
-  <link href="https://api.mapbox.com/mapbox-gl-js/v3.19.0/mapbox-gl.css" rel="stylesheet" />
-  <script src="https://api.mapbox.com/mapbox-gl-js/v3.19.0/mapbox-gl.js"></script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            accent: '#e8ff47',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-
-  <style>
-    body { background-color: #000000; color: #f0f0f0; }
-
-    /* Kill all Mapbox UI */
-    .mapboxgl-ctrl,
-    .mapboxgl-ctrl-attrib,
-    .mapboxgl-ctrl-logo,
-    .mapboxgl-ctrl-group,
-    .mapboxgl-ctrl-bottom-left,
-    .mapboxgl-ctrl-bottom-right,
-    .mapboxgl-ctrl-top-left,
-    .mapboxgl-ctrl-top-right { display: none !important; }
-
-    #map-bg {
-      opacity: 0;
-      transition: opacity 1.5s ease;
-    }
-    #map-bg.ready { opacity: 1; }
-
-    #hero-content {
-      opacity: 0;
-      animation: heroFadeIn 1.5s ease 0.3s forwards;
-    }
-    @keyframes heroFadeIn { to { opacity: 1; } }
-
-    /* Animated underline for links */
-    .underline-grow {
-      position: relative;
-      display: inline-block;
-    }
-    .underline-grow::after {
-      content: '';
-      position: absolute;
-      left: 0; bottom: -2px;
-      width: 0; height: 2px;
-      background: #e8ff47;
-      transition: width 0.25s ease;
-    }
-    .underline-grow:hover::after { width: 100%; }
-
-    /* Form focus ring */
-    .field:focus {
-      outline: none;
-      border-color: #e8ff47;
-      box-shadow: 0 0 0 2px rgba(232,255,71,0.15);
-    }
-
-    /* Section divider */
-    .section-rule {
-      border-color: rgba(255,255,255,0.06);
-    }
-
-    /* Scroll fade-in */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body class="font-sans antialiased">
+<body>
 
-  <!-- ═══════════════════════════════════════════
-       NAV
-  ═══════════════════════════════════════════ -->
-  <header class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-sm">
-    <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between gap-4">
-      <a href="#" class="font-mono font-bold text-lg tracking-tight text-accent shrink-0">nosite.ie</a>
-
-      <!-- Right side: contact links + CTA -->
-      <div class="flex items-center gap-5">
-        <div class="flex items-center gap-4 text-white/40 text-sm">
-          <a href="tel:+353834558538" class="flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-            </svg>
-          </a>
-          <a href="mailto:hello@nosite.ie" class="flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-            </svg>
-          </a>
+  <!-- Header -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#hero">nosite.ie</a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
+            <li class="nav-item"><a class="nav-link" href="#included">What's Included</a></li>
+            <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
         </div>
-
-        <a href="#contact"
-           class="text-sm font-semibold bg-accent text-black px-4 py-1.5 rounded hover:bg-white transition-colors duration-200 shrink-0">
-          Get a website
-        </a>
       </div>
-    </div>
+    </nav>
   </header>
 
-  <!-- ═══════════════════════════════════════════
-       HERO
-  ═══════════════════════════════════════════ -->
-  <main>
-    <section id="hero-bg" class="pt-40 pb-28 px-5 relative overflow-hidden min-h-screen">
-      <div id="map-bg" class="absolute inset-0"></div>
-      <!-- ↓ Darken the map — change the number (0–100) to adjust opacity -->
-      <div class="absolute inset-0 z-[1]" style="background:rgba(0,0,0,0.5);"></div>
-      <div class="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-b from-transparent to-black z-[2]"></div>
-      <div id="hero-content" class="max-w-5xl mx-auto relative z-10">
-
-        <p class="font-mono text-accent text-sm tracking-widest uppercase mb-6">Dublin Web Design</p>
-
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-8 max-w-3xl">
-          Your- customers are searching for you.<br />
-          <span class="text-accent" style="text-shadow:0 0 30px rgba(232,255,71,0.25),0 0 70px rgba(232,255,71,0.1);font-size:1.08em;">They can't find you.</span>
-        </h1>
-
-        <p class="text-xl text-white/80 max-w-xl mb-10 leading-relaxed px-4 py-3 rounded-lg -mx-4" style="background:rgba(0,0,0,0.6);">
-          If your business isn't online, you're invisible.
-          We build fast, professional websites for businesses.
-          The kind that show up in Google and make the phone ring.
-        </p>
-
-        <div class="flex flex-wrap gap-4 items-center">
-          <a href="#contact"
-             class="inline-flex items-center gap-2 bg-accent text-black font-bold text-base px-7 py-3.5 rounded hover:bg-white transition-colors duration-200">
-            Get your site built
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-            </svg>
-          </a>
-          <a href="#how-it-works" class="underline-grow text-white/50 text-sm font-medium hover:text-white transition-colors duration-200">
-            How it works
-          </a>
+  <!-- Hero -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6" data-reveal>
+          <span class="hero-label">Dublin Web Design</span>
+          <h1>Your customers are searching for you.<br><span class="typewriter-wrap"><span class="typewriter-placeholder" aria-hidden="true">Let's put you on the map.</span><span class="text-muted-hero typewriter" id="typewriter"></span></span></h1>
+          <p>If your business isn't online, you're invisible. We build fast, professional websites for businesses. The kind that show up in Google and make the phone ring.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary-custom">Get your site built</a>
+            <a href="#how-it-works" class="btn-outline-custom">How it works</a>
+          </div>
         </div>
-
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         SOCIAL PROOF STRIP
-    ═══════════════════════════════════════════ -->
-    <section class="border-t border-b section-rule py-7 px-5 bg-black">
-      <div class="max-w-5xl mx-auto flex flex-wrap gap-x-10 gap-y-4 items-center text-white/50 text-sm font-medium">
-       
-        <span>Tradespeople</span>
-        <span class="text-white/10">·</span>
-        <span>Salons &amp; Barbers</span>
-        <span class="text-white/10">·</span>
-        <span>Shops &amp; Retailers</span>
-        <span class="text-white/10">·</span>
-        <span>Clinics &amp; Therapists</span>
-        <span class="text-white/10">·</span>
-        <span>Gyms &amp; Fitness</span>
-        <span class="text-white/10">·</span>
-        <span>Accountants &amp; Solicitors</span>
-      </div>
-    </section>
-
-    <!-- Gradient rule -->
-    <div aria-hidden="true" style="height:1px;background:linear-gradient(to right,transparent,rgba(232,255,71,0.25),transparent);"></div>
-
-    <!-- ═══════════════════════════════════════════
-         HOW IT WORKS
-    ═══════════════════════════════════════════ -->
-    <section id="how-it-works" class="py-28 px-5 bg-[#0a0a0a]">
-      <div class="max-w-5xl mx-auto">
-
-        <p class="font-mono text-accent text-sm tracking-widest uppercase mb-4 fade-in">How it works</p>
-        <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-16 fade-in">
-          Three steps.<br />
-          <span style="position:relative;display:inline-block;">
-            <span aria-hidden="true" style="visibility:hidden">No drama.</span>
-            <span id="type-nd" style="position:absolute;left:0;top:0;white-space:nowrap;"></span>
-          </span>
-        </h2>
-
-        <div class="grid sm:grid-cols-3 gap-8">
-
-          <div class="fade-in">
-            <div class="font-mono text-accent text-4xl font-bold mb-4">01</div>
-            <h3 class="text-xl font-bold mb-3">You tell us about your business</h3>
-            <p class="text-white/50 leading-relaxed text-sm">
-              Fill in the form below. Name, what you do, where you're based, who your customers are.
-              No lengthy briefs. Takes five minutes.
-            </p>
-          </div>
-
-          <div class="fade-in">
-            <div class="font-mono text-accent text-4xl font-bold mb-4">02</div>
-            <h3 class="text-xl font-bold mb-3">We build it</h3>
-            <p class="text-white/50 leading-relaxed text-sm">
-              We write the copy, design the layout, and get your site live.
-              You review it. We adjust until it's right. Typical turnaround is under two weeks.
-            </p>
-          </div>
-
-          <div class="fade-in">
-            <div class="font-mono text-accent text-4xl font-bold mb-4">03</div>
-            <h3 class="text-xl font-bold mb-3">You get found</h3>
-            <p class="text-white/50 leading-relaxed text-sm">
-              Your site goes live on your domain with basic SEO in place.
-              Google can find it. Your customers can find it. You can stop explaining why you don't have one.
-            </p>
-          </div>
-
+        <div class="col-lg-6 text-center" data-reveal>
+          <img src="assets/images/pic01.png" class="img-fluid hero-image" alt="Nosite web design">
         </div>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ═══════════════════════════════════════════
-         WHAT YOU GET
-    ═══════════════════════════════════════════ -->
-    <section class="border-t section-rule py-28 px-5 bg-black">
-      <div class="max-w-5xl mx-auto">
+  <!-- Ticker -->
+  <div class="ticker-section">
+    <div class="ticker-track">
+      <span>Tradespeople</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Salons & Barbers</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Shops & Retailers</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Clinics & Therapists</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Gyms & Fitness</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Accountants & Solicitors</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Tradespeople</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Salons & Barbers</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Shops & Retailers</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Clinics & Therapists</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Gyms & Fitness</span>
+      <span class="ticker-dot">&middot;</span>
+      <span>Accountants & Solicitors</span>
+      <span class="ticker-dot">&middot;</span>
+    </div>
+  </div>
 
-        <p class="font-mono text-accent text-sm tracking-widest uppercase mb-4 fade-in">What's included</p>
-        <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-16 fade-in">
-          Everything you need.<br />
-          <span style="position:relative;display:inline-block;">
-            <span aria-hidden="true" style="visibility:hidden">Nothing you don't.</span>
-            <span id="type-nyd" style="position:absolute;left:0;top:0;white-space:nowrap;"></span>
-          </span>
-        </h2>
-
-        <div class="grid sm:grid-cols-2 gap-x-16 gap-y-5 max-w-3xl">
-
-          <div class="flex gap-3 items-start fade-in">
-            <span class="text-accent mt-0.5 shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </span>
-            <div>
-              <p class="font-semibold">One-page website</p>
-              <p class="text-white/40 text-sm">Covers who you are, what you do, and how to reach you.</p>
-            </div>
+  <!-- How It Works -->
+  <section class="how-it-works-section" id="how-it-works">
+    <div class="container">
+      <div class="text-center mb-5" data-reveal>
+        <span class="section-label">How it works</span>
+        <h2>Three steps.</h2>
+      </div>
+      <div class="row g-4" data-reveal>
+        <div class="col-lg-4">
+          <div class="step-card">
+            <span class="step-number">01</span>
+            <h4>You tell us about your business</h4>
+            <p>Fill in the form below. Name, what you do, where you're based, who your customers are. No lengthy briefs. Takes five minutes.</p>
           </div>
-
-          <div class="flex gap-3 items-start fade-in">
-            <span class="text-accent mt-0.5 shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </span>
-            <div>
-              <p class="font-semibold">Mobile-first design</p>
-              <p class="text-white/40 text-sm">Looks sharp on every phone, tablet, and screen.</p>
-            </div>
-          </div>
-
-          <div class="flex gap-3 items-start fade-in">
-            <span class="text-accent mt-0.5 shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </span>
-            <div>
-              <p class="font-semibold">Copy written for you</p>
-              <p class="text-white/40 text-sm">We write the words so you don't have to stare at a blank page.</p>
-            </div>
-          </div>
-
-          <div class="flex gap-3 items-start fade-in">
-            <span class="text-accent mt-0.5 shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </span>
-            <div>
-              <p class="font-semibold">Google-ready from day one</p>
-              <p class="text-white/40 text-sm">Basic SEO, structured data, sitemap, fast load times.</p>
-            </div>
-          </div>
-
-          <div class="flex gap-3 items-start fade-in">
-            <span class="text-accent mt-0.5 shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </span>
-            <div>
-              <p class="font-semibold">Hosting included</p>
-              <p class="text-white/40 text-sm">We sort the hosting. Nothing for you to manage.</p>
-            </div>
-          </div>
-
-          <div class="flex gap-3 items-start fade-in">
-            <span class="text-accent mt-0.5 shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </span>
-            <div>
-              <p class="font-semibold">Domain setup</p>
-              <p class="text-white/40 text-sm">Already have yourname.ie? We'll connect it. Don't have one? We'll get it.</p>
-            </div>
-          </div>
-
         </div>
-
+        <div class="col-lg-4">
+          <div class="step-card">
+            <span class="step-number">02</span>
+            <h4>We build it</h4>
+            <p>We write the copy, design the layout, and get your site live. You review it. We adjust until it's right. Typical turnaround is under two weeks.</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="step-card">
+            <span class="step-number">03</span>
+            <h4>You get found</h4>
+            <p>Your site goes live on your domain with basic SEO in place. Google can find it. Your customers can find it. You can stop explaining why you don't have one.</p>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Gradient rule -->
-    <div aria-hidden="true" style="height:1px;background:linear-gradient(to right,transparent,rgba(232,255,71,0.25),transparent);"></div>
-
-    <!-- ═══════════════════════════════════════════
-         PRICING
-    ═══════════════════════════════════════════ -->
-    <section id="pricing" class="border-t section-rule py-28 px-5 bg-[#0a0a0a]">
-      <div class="max-w-5xl mx-auto">
-
-        <p class="font-mono text-accent text-sm tracking-widest uppercase mb-4 fade-in">Pricing</p>
-        <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-4 fade-in">
-          Straightforward <span style="position:relative;display:inline-block;">
-            <span aria-hidden="true" style="visibility:hidden">pricing.</span>
-            <span id="type-sp" style="position:absolute;left:0;top:0;white-space:nowrap;"></span>
-          </span>
-        </h2>
-        <p class="text-white/50 max-w-md mb-16 fade-in">
-          Your site, built and kept live. No surprises. Ever.
-        </p>
-
-        <div class="grid sm:grid-cols-2 gap-6 max-w-2xl fade-in">
-
-          <!-- Monthly -->
-          <div class="rounded-2xl border border-white/15 bg-white/[0.03] p-8 flex flex-col">
-            <p class="font-mono text-white/40 text-xs tracking-widest uppercase mb-6">Monthly</p>
-            <div class="flex items-end gap-2 mb-1">
-              <span class="text-6xl font-black tracking-tight">€29</span>
-              <span class="text-white/40 text-sm pb-2">/ month</span>
+  <!-- What's Included -->
+  <section class="included-section" id="included">
+    <div class="container">
+      <div class="text-center mb-5" data-reveal>
+        <span class="section-label">What's included</span>
+        <h2>Everything you need.</h2>
+      </div>
+      <div class="row g-4" data-reveal>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-file-alt"></i>
             </div>
-            <p class="text-white/35 text-sm mb-8">Cancel any time.</p>
-            <ul class="space-y-3 text-sm text-white/65 mb-10 flex-1">
-              <li class="flex gap-2.5"><span class="text-accent mt-px">✓</span> Professional website</li>
-              <li class="flex gap-2.5"><span class="text-accent mt-px">✓</span> Hosting &amp; maintenance</li>
-              <li class="flex gap-2.5"><span class="text-accent mt-px">✓</span> Minor updates included</li>
-              <li class="flex gap-2.5"><span class="text-accent mt-px">✓</span> Domain included free</li>
-              <li class="flex gap-2.5"><span class="text-accent mt-px">✓</span> Price locked in for life. Your rate never increases.</li>
+            <h4>One-page website</h4>
+            <p>Covers who you are, what you do, and how to reach you.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h4>Mobile-first design</h4>
+            <p>Looks sharp on every phone, tablet, and screen.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-pen-nib"></i>
+            </div>
+            <h4>Copy written for you</h4>
+            <p>We write the words so you don't have to stare at a blank page.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h4>Google-ready from day one</h4>
+            <p>Basic SEO, structured data, sitemap, fast load times.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <h4>Hosting included</h4>
+            <p>We sort the hosting. Nothing for you to manage.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h4>Domain setup</h4>
+            <p>Already have yourname.ie? We'll connect it. Don't have one? We'll get it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="text-center mb-5" data-reveal>
+        <span class="section-label">Pricing</span>
+        <h2>Straightforward.</h2>
+        <p class="section-subtitle">Your site, built and kept live. No surprises. Ever.</p>
+      </div>
+      <div class="row g-4 justify-content-center" data-reveal>
+        <div class="col-lg-5 col-md-6">
+          <div class="pricing-card">
+            <h4>Monthly</h4>
+            <div class="pricing-amount">
+              <span class="currency">&euro;</span><span class="price">29</span><span class="period">/ month</span>
+            </div>
+            <p class="pricing-note">Cancel any time.</p>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> Professional website</li>
+              <li><i class="fas fa-check"></i> Hosting & maintenance</li>
+              <li><i class="fas fa-check"></i> Minor updates included</li>
+              <li><i class="fas fa-check"></i> Domain included free</li>
+              <li><i class="fas fa-check"></i> Price locked in for life. Your rate never increases.</li>
             </ul>
-            <a href="#contact"
-               class="block text-center border border-white/25 text-white font-semibold text-sm px-6 py-3 rounded-lg hover:border-white/60 hover:text-white transition-colors duration-200">
-              Get started
+            <a href="#contact" class="btn-outline-custom w-100">Get started</a>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-6">
+          <div class="pricing-card pricing-card-featured">
+            <div class="pricing-badge-row">
+              <span class="pricing-badge">Most popular</span>
+              <span class="pricing-save">Save &euro;49</span>
+            </div>
+            <h4>Annual</h4>
+            <div class="pricing-amount">
+              <span class="currency">&euro;</span><span class="price">299</span><span class="period">/ year</span>
+            </div>
+            <p class="pricing-note">Billed once a year.</p>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> Professional website</li>
+              <li><i class="fas fa-check"></i> Hosting & maintenance</li>
+              <li><i class="fas fa-check"></i> Minor updates included</li>
+              <li><i class="fas fa-check"></i> Domain included free</li>
+              <li><i class="fas fa-check"></i> Price locked in for life. Your rate never increases.</li>
+            </ul>
+            <a href="#contact" class="btn-primary-custom w-100">Get started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="row g-5 align-items-start">
+        <div class="col-lg-5" data-reveal>
+          <span class="section-label">Get in touch</span>
+          <h2>Ready to exist online?</h2>
+          <p>Fill in the form and we'll get back to you within one business day. No sales calls, no pressure. Just a straight conversation about what you need.</p>
+          <div class="contact-info">
+            <div class="contact-info-item">
+              <i class="fas fa-envelope"></i>
+              <span>hello@nosite.ie</span>
+            </div>
+            <div class="contact-info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Dublin, Ireland</span>
+            </div>
+            <div class="contact-info-item">
+              <i class="fas fa-phone"></i>
+              <span>083 455 8538</span>
+            </div>
+            <a href="https://wa.me/353834558538" target="_blank" rel="noopener" class="btn-whatsapp">
+              <i class="fab fa-whatsapp"></i> Chat on WhatsApp
             </a>
           </div>
-
-          <!-- Annual -->
-          <div class="rounded-2xl p-8 flex flex-col" style="border:1px solid rgba(232,255,71,0.45);background:rgba(232,255,71,0.04);box-shadow:0 0 40px rgba(232,255,71,0.08),0 0 80px rgba(232,255,71,0.04);">
-            <div class="flex items-center justify-between mb-6">
-              <p class="font-mono text-white/40 text-xs tracking-widest uppercase">Annual</p>
-              <div class="flex items-center gap-3">
-                <span class="font-mono text-accent text-xs font-bold tracking-widest uppercase">Most popular</span>
-                <span class="font-mono text-xs bg-white text-black font-bold px-2.5 py-1 rounded-full tracking-wide">Save €49</span>
-              </div>
-            </div>
-            <div class="flex items-end gap-2 mb-1">
-              <span class="text-6xl font-black tracking-tight">€299</span>
-              <span class="text-white/40 text-sm pb-2">/ year</span>
-            </div>
-            <p class="text-white/35 text-sm mb-8">Billed once a year.</p>
-            <ul class="space-y-3 text-sm text-white/65 mb-10 flex-1">
-              <li class="flex gap-2.5"><span class="text-accent mt-px">✓</span> Professional website</li>
-              <li class="flex gap-2.5"><span class="text-accent mt-px">✓</span> Hosting &amp; maintenance</li>
-              <li class="flex gap-2.5"><span class="text-accent mt-px">✓</span> Minor updates included</li>
-              <li class="flex gap-2.5"><span class="text-accent mt-px">✓</span> Domain included free</li>
-              <li class="flex gap-2.5"><span class="text-accent mt-px">✓</span> Price locked in for life. Your rate never increases.</li>
-            </ul>
-            <a href="#contact"
-               class="block text-center bg-accent text-black font-bold text-sm px-6 py-3 rounded-lg hover:bg-white transition-colors duration-200">
-              Get started
-            </a>
-          </div>
-
         </div>
-
-        <p class="text-white/25 text-sm mt-8 fade-in">
-         
-        </p>
-
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         CONTACT
-    ═══════════════════════════════════════════ -->
-    <section id="contact" class="border-t section-rule py-28 px-5 bg-black">
-      <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
-
-        <!-- Left: copy -->
-        <div>
-          <p class="font-mono text-sm tracking-widest uppercase mb-4 fade-in" style="color:#4af0ff;">Get in touch</p>
-          <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-6 fade-in">
-            Ready to exist<br />
-            <span style="position:relative;display:inline-block;">
-              <span aria-hidden="true" style="visibility:hidden">on the internet?</span>
-              <span id="type-ri" style="position:absolute;left:0;top:0;white-space:nowrap;"></span>
-            </span>
-          </h2>
-          <p class="text-white/50 leading-relaxed mb-8 fade-in">
-            Fill in the form and we'll get back to you within one business day.
-            No sales calls, no subscriptions. Just a straight conversation about what you need.
-          </p>
-          <div class="space-y-4 fade-in">
-            <div class="flex gap-3 items-center text-sm text-white/40">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-              </svg>
-              <a href="mailto:hello@nosite.ie" class="underline-grow hover:text-white transition-colors">hello@nosite.ie</a>
-            </div>
-            <div class="flex gap-3 items-center text-sm text-white/40">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-              </svg>
-              Dublin, Ireland
-            </div>
-            <div class="flex gap-3 items-center text-sm text-white/40">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-              </svg>
-              <a href="tel:+353834558538" class="underline-grow hover:text-white transition-colors">083 455 8538</a>
-            </div>
+        <div class="col-lg-7" data-reveal>
+          <div class="contact-form-wrapper">
+            <form id="contact-form" action="" method="post">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Your name</label>
+                  <input name="name" type="text" id="name" class="form-control" placeholder="Mary Murphy" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="business" class="form-label">Business name</label>
+                  <input name="business" type="text" id="business" class="form-control" placeholder="Murphy's Caf&eacute;">
+                </div>
+                <div class="col-12">
+                  <label for="email" class="form-label">Email address</label>
+                  <input name="email" type="email" id="email" class="form-control" placeholder="mary@example.ie" required>
+                </div>
+                <div class="col-12">
+                  <label for="business-info" class="form-label">What does your business do?</label>
+                  <textarea name="business-info" id="business-info" rows="3" class="form-control" placeholder="Coffee shop on Grafton Street, open since 2015" required></textarea>
+                </div>
+                <div class="col-12">
+                  <label for="notes" class="form-label">Anything else we should know? <span class="text-muted">(optional)</span></label>
+                  <textarea name="notes" id="notes" rows="2" class="form-control" placeholder="Already have a domain, need it up by Easter, etc."></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn-primary-custom w-100">Send message</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-
-        <!-- Right: form -->
-        <div class="fade-in">
-          <form id="contact-form" novalidate class="space-y-5">
-
-            <div class="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label for="name" class="block text-sm font-medium text-white/60 mb-1.5">Your name</label>
-                <input type="text" id="name" name="name" required autocomplete="name"
-                       class="field w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 transition-all duration-200"
-                       placeholder="Mary Murphy" />
-              </div>
-              <div>
-                <label for="business" class="block text-sm font-medium text-white/60 mb-1.5">Business name</label>
-                <input type="text" id="business" name="business" required
-                       class="field w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 transition-all duration-200"
-                       placeholder="Murphy's Café" />
-              </div>
-            </div>
-
-            <div>
-              <label for="email" class="block text-sm font-medium text-white/60 mb-1.5">Email address</label>
-              <input type="email" id="email" name="email" required autocomplete="email"
-                     class="field w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 transition-all duration-200"
-                     placeholder="mary@example.ie" />
-            </div>
-
-            <div>
-              <label for="what" class="block text-sm font-medium text-white/60 mb-1.5">What does your business do?</label>
-              <input type="text" id="what" name="what"
-                     class="field w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 transition-all duration-200"
-                     placeholder="Coffee shop on Grafton Street, open since 2015" />
-            </div>
-
-            <div>
-              <label for="message" class="block text-sm font-medium text-white/60 mb-1.5">Anything else we should know? <span class="text-white/25">(optional)</span></label>
-              <textarea id="message" name="message" rows="4"
-                        class="field w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 transition-all duration-200 resize-none"
-                        placeholder="Already have a domain, need it up by Easter, etc."></textarea>
-            </div>
-
-            <!-- Status message -->
-            <div id="form-status" class="hidden text-sm font-medium rounded-lg px-4 py-3"></div>
-
-            <button type="submit" id="submit-btn"
-                    class="w-full bg-accent text-black font-bold text-sm px-6 py-3.5 rounded-lg hover:bg-white transition-colors duration-200 flex items-center justify-center gap-2">
-              <span id="btn-text">Send message</span>
-              <svg id="btn-spinner" class="hidden w-4 h-4 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 5 4.373 5 12h4z"></path>
-              </svg>
-            </button>
-
-          </form>
-        </div>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
-
-  <!-- ═══════════════════════════════════════════
-       FOOTER
-  ═══════════════════════════════════════════ -->
-  <footer class="border-t section-rule py-10 px-5 bg-[#0a0a0a]">
-    <div class="max-w-5xl mx-auto flex flex-wrap justify-between items-center gap-4 text-white/25 text-sm">
-      <span class="font-mono font-bold text-accent/60">nosite.ie</span>
-      <span>Dublin, Ireland · <a href="mailto:hello@nosite.ie" class="underline-grow hover:text-white/60 transition-colors">hello@nosite.ie</a></span>
-      <span>© 2026 Nosite</span>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div class="footer-simple">
+          <a href="#hero" class="footer-brand-link">nosite.ie</a>
+          <p>Dublin, Ireland &middot; hello@nosite.ie</p>
+          <p>&copy; 2026 Nosite</p>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Back to top -->
-  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
-    aria-label="Back to top"
-    class="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full border border-white/20 bg-[#0a0a0a]/80 backdrop-blur-sm text-white/50 hover:text-white hover:border-white/50 transition-all duration-300 flex items-center justify-center opacity-0 pointer-events-none"
-    style="transition:opacity .3s,transform .3s;">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
-    </svg>
-  </button>
-
-  <!-- ═══════════════════════════════════════════
-       MAPBOX HERO BACKGROUND
-       +
-  ═══════════════════════════════════════════ -->
-  <script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3RlZmFuYmMiLCJhIjoiY21tNm10dWUyMGowMTJ0cXVzcmx0ZjltcyJ9.rvESve8SzLnJV9PeIBzjfA';
-
-    const DUBLIN = [-6.2603, 53.3498];
-
-    const map = new mapboxgl.Map({
-      container: 'map-bg',
-      style: {
-        version: 8,
-        sources: {
-          osm: {
-            type: 'vector',
-            tiles: ['https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/{z}/{x}/{y}.mvt?access_token=pk.eyJ1Ijoic3RlZmFuYmMiLCJhIjoiY21tNm10dWUyMGowMTJ0cXVzcmx0ZjltcyJ9.rvESve8SzLnJV9PeIBzjfA'],
-            maxzoom: 13
-          }
-        },
-        layers: [
-          { id: 'background', type: 'background', paint: { 'background-color': '#080808' } },
-          { id: 'water', type: 'fill', source: 'osm', 'source-layer': 'water', paint: { 'fill-color': '#141414' } },
-          {
-            id: 'roads-minor', type: 'line', source: 'osm', 'source-layer': 'road',
-            filter: ['in', 'class', 'street', 'street_limited', 'service', 'path', 'pedestrian', 'track', 'secondary_link', 'tertiary_link'],
-            paint: { 'line-color': '#ffffff', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 0.4, 15, 1.2], 'line-opacity': 0.35 }
-          },
-          {
-            id: 'roads-secondary', type: 'line', source: 'osm', 'source-layer': 'road',
-            filter: ['in', 'class', 'secondary', 'tertiary'],
-            paint: { 'line-color': '#ffffff', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 0.8, 15, 2.5], 'line-opacity': 0.6 }
-          },
-          {
-            id: 'roads-primary', type: 'line', source: 'osm', 'source-layer': 'road',
-            filter: ['in', 'class', 'primary', 'primary_link', 'trunk', 'trunk_link'],
-            paint: { 'line-color': '#ffffff', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 1.5, 15, 4], 'line-opacity': 0.85 }
-          },
-          {
-            id: 'roads-motorway', type: 'line', source: 'osm', 'source-layer': 'road',
-            filter: ['in', 'class', 'motorway', 'motorway_link'],
-            paint: { 'line-color': '#ffffff', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 2, 15, 5], 'line-opacity': 1.0 }
-          },
-          {
-            id: 'waterway', type: 'line', source: 'osm', 'source-layer': 'waterway',
-            paint: { 'line-color': '#ffffff', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 2, 15, 5], 'line-opacity': 0.7 }
-          }
-        ]
-      },
-      center: DUBLIN,
-      zoom: 12,
-      bearing: -12, 
-      /* Map angle or pitch*/
-      pitch: 30,
-      interactive: false,
-      attributionControl: false,
-      pixelRatio: window.devicePixelRatio || 2,
-    });
-
-    map.on('load', () => {
-      document.getElementById('map-bg').classList.add('ready');
-      startMapAnimation();
-    });
-
-    let mouse = { x: 0, y: 0 };
-    let smooth = { x: 0, y: 0 };
-    let mapTime = 0;
-
-    window.addEventListener('mousemove', e => {
-      mouse.x = e.clientX / window.innerWidth  - 0.5;
-      mouse.y = e.clientY / window.innerHeight - 0.5;
-    });
-
-    // Gyroscope — Android only (iOS requires a permission prompt, so skipped)
-    if (typeof DeviceOrientationEvent !== 'undefined' &&
-        typeof DeviceOrientationEvent.requestPermission !== 'function') {
-      window.addEventListener('deviceorientation', e => {
-        const gamma = e.gamma ?? 0;
-        const beta  = e.beta  ?? 0;
-        mouse.x = Math.max(-0.5, Math.min(0.5,  gamma      / 30));
-        mouse.y = Math.max(-0.5, Math.min(0.5, (beta - 45) / 30));
-      });
-    }
-
-    function lerp(a, b, t) { return a + (b - a) * t; }
-
-    let heroVisible = true;
-    new IntersectionObserver(entries => {
-      heroVisible = entries[0].isIntersecting;
-    }, { threshold: 0 }).observe(document.getElementById('hero-bg'));
-
-    function startMapAnimation() {
-      function tick() {
-        if (heroVisible) {
-          mapTime += 0.004;
-          smooth.x = lerp(smooth.x, mouse.x, 0.04);
-          smooth.y = lerp(smooth.y, mouse.y, 0.04);
-
-          map.jumpTo({
-            center: [
-              DUBLIN[0] + Math.sin(mapTime * 0.18) * 0.018 + Math.sin(mapTime * 0.07) * 0.009 + smooth.x * 0.008,
-              DUBLIN[1] + Math.cos(mapTime * 0.13) * 0.012 + Math.cos(mapTime * 0.05) * 0.006 + smooth.y * -0.006
-            ],
-            bearing: -12 + Math.sin(mapTime * 0.08) * 5 + smooth.x * 6
-          });
-        }
-        requestAnimationFrame(tick);
-      }
-      tick();
-    }
-  </script>
-
-  <!-- ═══════════════════════════════════════════
-       JS
-  ═══════════════════════════════════════════ -->
-  <script>
-    // h2 typewriters — fire once on scroll into view
-    [
-      { id: 'type-nd',  text: "No drama."              },
-      { id: 'type-nyd', text: "Nothing you don't."     },
-      { id: 'type-sp',  text: "pricing."                 },
-      { id: 'type-ri',  text: "on the internet?"       },
-    ].forEach(function({ id, text }) {
-      const target = document.getElementById(id);
-      if (!target) return;
-      let fired = false;
-      function type() {
-        let i = 0;
-        (function tick() {
-          if (i < text.length) { target.textContent += text[i++]; setTimeout(tick, 45); }
-        })();
-      }
-      new IntersectionObserver(function(entries, obs) {
-        if (entries[0].isIntersecting && !fired) { fired = true; obs.disconnect(); type(); }
-      }, { threshold: 0.5 }).observe(target);
-    });
-
-    // Scroll fade-in
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      }),
-      { threshold: 0.12 }
-    );
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Back to top button
-    (function () {
-      const btn = document.getElementById('back-to-top');
-      window.addEventListener('scroll', function () {
-        const show = window.scrollY > 400;
-        btn.style.opacity = show ? '1' : '0';
-        btn.style.pointerEvents = show ? 'auto' : 'none';
-      }, { passive: true });
-    })();
-
-    // Contact form — basic validation + simulated submission
-    const form = document.getElementById('contact-form');
-    const statusEl = document.getElementById('form-status');
-    const submitBtn = document.getElementById('submit-btn');
-    const btnText = document.getElementById('btn-text');
-    const spinner = document.getElementById('btn-spinner');
-
-    function showStatus(msg, isError) {
-      statusEl.textContent = msg;
-      statusEl.className = isError
-        ? 'text-sm font-medium rounded-lg px-4 py-3 bg-red-500/10 text-red-400 border border-red-500/20'
-        : 'text-sm font-medium rounded-lg px-4 py-3 bg-accent/10 text-accent border border-accent/20';
-    }
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      const name    = form.name.value.trim();
-      const business = form.business.value.trim();
-      const email   = form.email.value.trim();
-
-      if (!name || !business || !email) {
-        showStatus('Please fill in your name, business name, and email.', true);
-        return;
-      }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showStatus('That email address doesn\'t look right.', true);
-        return;
-      }
-
-      // Loading state
-      submitBtn.disabled = true;
-      btnText.textContent = 'Sending…';
-      spinner.classList.remove('hidden');
-
-      try {
-        // Replace this with your actual form endpoint (Formspree, Netlify Forms, etc.)
-        const res = await fetch('https://formspree.io/f/REPLACE_WITH_FORM_ID', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            name:     name,
-            business: business,
-            email:    email,
-            what:     form.what.value.trim(),
-            message:  form.message.value.trim(),
-          })
-        });
-
-        if (res.ok) {
-          form.reset();
-          showStatus('Message sent. We\'ll be in touch within one business day.', false);
-        } else {
-          throw new Error('server error');
-        }
-      } catch {
-        // Fallback: open mailto
-        const body = encodeURIComponent(
-          `Name: ${name}\nBusiness: ${business}\nEmail: ${email}\nWhat: ${form.what.value.trim()}\nMessage: ${form.message.value.trim()}`
-        );
-        showStatus('Something went wrong with our form. Click to email us directly.', true);
-        setTimeout(() => {
-          window.location.href = `mailto:hello@nosite.ie?subject=Website enquiry from ${encodeURIComponent(business)}&body=${body}`;
-        }, 1500);
-      } finally {
-        submitBtn.disabled = false;
-        btnText.textContent = 'Send message';
-        spinner.classList.add('hidden');
-      }
-    });
-  </script>
-
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="assets/js/main.js"></script>
 
 </body>
 </html>
