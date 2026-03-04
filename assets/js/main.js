@@ -144,6 +144,43 @@
     }
 
     // --- Scroll reveal ---
+    // --- Contact form (Formspree) ---
+    var contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = contactForm.querySelector('button[type="submit"]');
+        var originalText = btn.textContent;
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+
+        fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        }).then(function (response) {
+          if (response.ok) {
+            contactForm.reset();
+            btn.textContent = 'Message sent!';
+            btn.classList.add('form-success');
+            setTimeout(function () {
+              btn.textContent = originalText;
+              btn.disabled = false;
+              btn.classList.remove('form-success');
+            }, 4000);
+          } else {
+            btn.textContent = 'Something went wrong';
+            btn.disabled = false;
+            setTimeout(function () { btn.textContent = originalText; }, 3000);
+          }
+        }).catch(function () {
+          btn.textContent = 'Something went wrong';
+          btn.disabled = false;
+          setTimeout(function () { btn.textContent = originalText; }, 3000);
+        });
+      });
+    }
+
     var revealElements = document.querySelectorAll('[data-reveal]');
     var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {

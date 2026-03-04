@@ -658,6 +658,11 @@ nav.navbar.fixed-top.scrolled {
   resize: none;
 }
 
+.btn-primary-custom.form-success {
+  background-color: #16a34a;
+  border-color: #16a34a;
+}
+
 @media (max-width: 767px) {
   .contact-form-wrapper {
     padding: 32px 24px;
