@@ -137,7 +137,6 @@
           i++;
           if (i >= text.length) {
             clearInterval(interval);
-            typewriterEl.classList.add('done');
           }
         }, 60);
       }, 400);
