@@ -663,6 +663,34 @@ nav.navbar.fixed-top.scrolled {
   border-color: #16a34a;
 }
 
+.form-message {
+  margin-top: 16px;
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.form-message.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-message-success {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.form-message-error {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
 @media (max-width: 767px) {
   .contact-form-wrapper {
     padding: 32px 24px;

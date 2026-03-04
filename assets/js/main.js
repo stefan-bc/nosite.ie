@@ -145,6 +145,21 @@
 
     // --- Scroll reveal ---
     // --- Contact form (Formspree) ---
+    function showFormMessage(text, type) {
+      var existing = document.querySelector('.form-message');
+      if (existing) existing.remove();
+      var msg = document.createElement('div');
+      msg.className = 'form-message form-message-' + type;
+      msg.textContent = text;
+      var form = document.getElementById('contact-form');
+      form.parentNode.insertBefore(msg, form.nextSibling);
+      setTimeout(function () { msg.classList.add('visible'); }, 10);
+      setTimeout(function () {
+        msg.classList.remove('visible');
+        setTimeout(function () { msg.remove(); }, 400);
+      }, 6000);
+    }
+
     var contactForm = document.getElementById('contact-form');
     if (contactForm) {
       contactForm.addEventListener('submit', function (e) {
@@ -163,20 +178,21 @@
             contactForm.reset();
             btn.textContent = 'Message sent!';
             btn.classList.add('form-success');
+            showFormMessage('Thanks! We\'ll be in touch within one business day.', 'success');
             setTimeout(function () {
               btn.textContent = originalText;
               btn.disabled = false;
               btn.classList.remove('form-success');
             }, 4000);
           } else {
-            btn.textContent = 'Something went wrong';
+            showFormMessage('Something went wrong. Please try again or email us directly.', 'error');
+            btn.textContent = originalText;
             btn.disabled = false;
-            setTimeout(function () { btn.textContent = originalText; }, 3000);
           }
         }).catch(function () {
-          btn.textContent = 'Something went wrong';
+          showFormMessage('Something went wrong. Please try again or email us directly.', 'error');
+          btn.textContent = originalText;
           btn.disabled = false;
-          setTimeout(function () { btn.textContent = originalText; }, 3000);
         });
       });
     }
