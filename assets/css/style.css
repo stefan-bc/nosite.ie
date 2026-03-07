@@ -243,7 +243,7 @@ nav.navbar.fixed-top.scrolled {
 }
 
 .hero-section h1 {
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(42px, 5vw, 64px);
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.03em;
@@ -840,14 +840,6 @@ a.contact-info-item:hover i {
 @media (max-width: 767px) {
   :root {
     --section-padding: 60px;
-  }
-
-  .typewriter-wrap {
-    display: block;
-  }
-
-  .typewriter-placeholder {
-    display: none;
   }
 
   .pricing-card {
