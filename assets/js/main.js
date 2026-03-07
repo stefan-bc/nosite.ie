@@ -131,12 +131,16 @@
       typewriterStarted = true;
       var text = "Let's put you on the map.";
       var i = 0;
+      // Start fully hidden
+      typewriterEl.innerHTML = '<span style="visibility:hidden">' + text + '</span>';
       setTimeout(function () {
         var interval = setInterval(function () {
-          typewriterEl.textContent = text.slice(0, i + 1);
           i++;
           if (i >= text.length) {
+            typewriterEl.textContent = text;
             clearInterval(interval);
+          } else {
+            typewriterEl.innerHTML = text.slice(0, i) + '<span style="visibility:hidden">' + text.slice(i) + '</span>';
           }
         }, 60);
       }, 400);

@@ -255,25 +255,7 @@ nav.navbar.fixed-top.scrolled {
   color: var(--color-text-muted);
 }
 
-.typewriter-wrap {
-  display: block;
-  position: relative;
-}
-
-.typewriter-placeholder {
-  visibility: hidden;
-  display: block;
-}
-
 .typewriter {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.typewriter {
-  caret-color: transparent;
   -webkit-user-select: none;
   user-select: none;
 }
