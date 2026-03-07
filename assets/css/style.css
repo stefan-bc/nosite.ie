@@ -299,7 +299,7 @@ nav.navbar.fixed-top.scrolled {
 
 @media (max-width: 991px) {
   .hero-section {
-    text-align: center;
+    text-align: left;
     padding-top: 120px;
     padding-bottom: 80px;
   }
@@ -307,7 +307,7 @@ nav.navbar.fixed-top.scrolled {
     max-width: 100%;
   }
   .hero-actions {
-    justify-content: center;
+    justify-content: flex-start;
   }
   .hero-image {
     margin-top: 60px;
