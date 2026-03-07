@@ -245,10 +245,14 @@ nav.navbar.fixed-top.scrolled {
 .hero-section h1 {
   font-size: clamp(52px, 5.5vw, 64px);
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.15;
   letter-spacing: -0.03em;
   margin-bottom: 24px;
   color: var(--color-heading);
+}
+
+.hero-section h1 .typewriter {
+  display: block;
 }
 
 .hero-section h1 .text-muted-hero {
