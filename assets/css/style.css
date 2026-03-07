@@ -18,7 +18,7 @@
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --radius: 12px;
   --radius-sm: 8px;
-  --section-padding: 140px;
+  --section-padding: 80px;
 }
 
 /* --- Reset & Base --- */
@@ -366,6 +366,14 @@ nav.navbar.fixed-top.scrolled {
 .step-card {
   padding: 40px 32px;
   height: 100%;
+  text-align: center;
+}
+
+.step-illustration {
+  max-width: 200px;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 24px;
 }
 
 .step-number {
