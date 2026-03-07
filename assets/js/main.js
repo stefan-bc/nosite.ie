@@ -17,6 +17,15 @@
       checkScroll();
     }
 
+    // --- Close mobile menu on outside tap ---
+    document.addEventListener('click', function (e) {
+      var navCollapse = document.querySelector('.navbar-collapse.show');
+      if (navCollapse && !navCollapse.contains(e.target) && !e.target.closest('.navbar-toggler')) {
+        var instance = bootstrap.Collapse.getInstance(navCollapse) || new bootstrap.Collapse(navCollapse, { toggle: false });
+        instance.hide();
+      }
+    });
+
     // --- Smooth scroll ---
     var navLinks = document.querySelectorAll('.nav-link[href^="#"]');
     navLinks.forEach(function (link) {
