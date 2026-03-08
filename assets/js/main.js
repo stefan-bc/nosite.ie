@@ -42,7 +42,7 @@
           contactForm.reset();
           btn.textContent = 'Sent!';
           btn.classList.add('form-success');
-          showMessage('Thanks. We\'ll be in touch within one business day.', 'success');
+          showMessage('Message sent. Thank you.', 'success');
           setTimeout(function () {
             btn.textContent = originalText;
             btn.disabled = false;

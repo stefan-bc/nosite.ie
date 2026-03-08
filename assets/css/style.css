@@ -240,12 +240,11 @@ ul {
 }
 
 .site-nav .nav-phone {
-  display: none;
-  font-size: 14px;
-  font-weight: 500;
+  display: flex;
+  align-items: center;
   color: var(--color-text);
   text-decoration: none;
-  margin-right: 16px;
+  margin-left: 8px;
 }
 
 .site-nav .nav-phone:hover {
@@ -414,7 +413,8 @@ ul {
 }
 
 .ticker-track span {
-  font-size: 14px;
+  flex-shrink: 0;
+  font-size: 12px;
   font-weight: 400;
   color: var(--color-text-muted);
   letter-spacing: 0.03em;
@@ -422,7 +422,7 @@ ul {
 
 @keyframes ticker-scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  100% { transform: translateX(-25%); }
 }
 
 /* --- Sections --- */
@@ -630,7 +630,21 @@ ul {
 
 /* --- About --- */
 
-/* Uses .text-block — no extra styles needed */
+.about-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-block);
+}
+
+.about-text {
+  max-width: var(--max-width-text);
+}
+
+.about-mockup img {
+  max-width: 240px;
+  height: auto;
+}
 
 /* --- FAQ --- */
 
@@ -891,6 +905,15 @@ ul {
     max-width: 400px;
   }
 
+  .about-layout {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .about-mockup img {
+    max-width: 280px;
+  }
+
   .contact-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -947,7 +970,7 @@ ul {
   }
 
   .site-nav .nav-phone {
-    display: inline;
+    display: none;
   }
 
   .site-nav .nav-cta {
