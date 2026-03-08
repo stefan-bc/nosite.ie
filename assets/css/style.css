@@ -161,6 +161,11 @@ ul {
   color: var(--color-text);
 }
 
+/* Hamburger toggle (hidden checkbox) */
+.menu-toggle {
+  display: none;
+}
+
 /* Hamburger button */
 .hamburger {
   display: flex;
@@ -174,6 +179,7 @@ ul {
   border: none;
   cursor: pointer;
   margin-left: 8px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hamburger span {
@@ -185,20 +191,21 @@ ul {
   transition: transform 0.3s, opacity 0.3s;
 }
 
-.hamburger.active span:nth-child(1) {
+/* X animation when open */
+.menu-toggle:checked ~ .site-nav .hamburger span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
 
-.hamburger.active span:nth-child(2) {
+.menu-toggle:checked ~ .site-nav .hamburger span:nth-child(2) {
   opacity: 0;
 }
 
-.hamburger.active span:nth-child(3) {
+.menu-toggle:checked ~ .site-nav .hamburger span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile menu */
-.site-nav .nav-links.mobile-open {
+/* Mobile menu — shown when checkbox is checked */
+.menu-toggle:checked ~ .site-nav .nav-links {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -214,19 +221,21 @@ ul {
   border-bottom: 1px solid var(--color-border);
 }
 
-.site-nav .nav-links.mobile-open a {
+.menu-toggle:checked ~ .site-nav .nav-links a {
   font-size: 16px;
 }
 
-/* Nav overlay — blocks clicks behind open menu */
+/* Nav overlay — click-away to close */
 .nav-overlay {
   position: fixed;
   inset: 0;
   z-index: 99;
   display: none;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.nav-overlay.active {
+.menu-toggle:checked ~ .nav-overlay {
   display: block;
 }
 
@@ -919,7 +928,7 @@ ul {
     display: flex;
   }
 
-  .site-nav .nav-links.mobile-open {
+  .menu-toggle:checked ~ .site-nav .nav-links {
     position: static;
     flex-direction: row;
     background: none;
@@ -931,6 +940,10 @@ ul {
 
   .hamburger {
     display: none;
+  }
+
+  .nav-overlay {
+    display: none !important;
   }
 
   .site-nav .nav-phone {
