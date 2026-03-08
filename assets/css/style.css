@@ -393,7 +393,7 @@ ul {
 /* --- Ticker --- */
 
 .ticker {
-  background: #ffffff;
+  background: var(--color-bg-alt);
   overflow: hidden;
   white-space: nowrap;
   padding: 5px 0;
@@ -436,8 +436,12 @@ ul {
   margin: 0 auto;
 }
 
+.text-block {
+  text-align: center;
+}
+
 .text-block h2 {
-  text-align: left;
+  text-align: center;
 }
 
 /* --- Two Column --- */
@@ -522,7 +526,10 @@ ul {
   display: block;
   font-size: 40px;
   font-weight: 600;
-  color: var(--color-accent);
+  background: linear-gradient(135deg, rgb(218, 255, 233) 0%, rgb(123, 96, 236) 50%, rgb(60, 40, 140) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   line-height: 1;
   margin-bottom: 12px;
 }
