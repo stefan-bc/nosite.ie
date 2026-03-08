@@ -26,6 +26,7 @@
       hamburger.classList.remove('active');
       hamburger.setAttribute('aria-expanded', 'false');
       overlay.classList.remove('active');
+      document.body.style.overflow = '';
     }
 
     hamburger.addEventListener('click', function (e) {
@@ -34,6 +35,7 @@
       hamburger.classList.toggle('active', open);
       hamburger.setAttribute('aria-expanded', String(open));
       overlay.classList.toggle('active', open);
+      document.body.style.overflow = open ? 'hidden' : '';
     });
 
     navLinks.querySelectorAll('a').forEach(function (link) {
@@ -44,6 +46,12 @@
       e.preventDefault();
       e.stopPropagation();
       closeMenu();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
+        closeMenu();
+      }
     });
   }
 

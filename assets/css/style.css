@@ -396,7 +396,7 @@ ul {
   background: var(--color-bg-alt);
   overflow: hidden;
   white-space: nowrap;
-  padding: 5px 0;
+  padding: 6px 0;
 }
 
 .ticker-track {
@@ -405,7 +405,7 @@ ul {
 }
 
 .ticker-track span {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   color: var(--color-text-muted);
   letter-spacing: 0.03em;
