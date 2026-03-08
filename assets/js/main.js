@@ -29,14 +29,27 @@
       document.body.style.overflow = '';
     }
 
-    hamburger.addEventListener('click', function (e) {
+    var menuTouched = false;
+
+    function toggleMenu(e) {
+      if (e.type === 'touchend') {
+        menuTouched = true;
+        e.preventDefault();
+      }
+      if (e.type === 'click' && menuTouched) {
+        menuTouched = false;
+        return;
+      }
       e.stopPropagation();
       var open = navLinks.classList.toggle('mobile-open');
       hamburger.classList.toggle('active', open);
       hamburger.setAttribute('aria-expanded', String(open));
       overlay.classList.toggle('active', open);
       document.body.style.overflow = open ? 'hidden' : '';
-    });
+    }
+
+    hamburger.addEventListener('touchend', toggleMenu);
+    hamburger.addEventListener('click', toggleMenu);
 
     navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', closeMenu);
