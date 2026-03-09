@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nosite.ie/sitemap.xml
