@@ -39,15 +39,14 @@
         headers: { 'Accept': 'application/json' }
       }).then(function (response) {
         if (response.ok) {
-          contactForm.reset();
-          btn.textContent = 'Sent!';
-          btn.classList.add('form-success');
-          showMessage('Message sent. Thank you.', 'success');
-          setTimeout(function () {
-            btn.textContent = originalText;
-            btn.disabled = false;
-            btn.classList.remove('form-success');
-          }, 4000);
+          var wrapper = contactForm.parentNode;
+          contactForm.remove();
+          var walkin = wrapper.querySelector('.contact-walkin');
+          if (walkin) walkin.remove();
+          var msg = document.createElement('div');
+          msg.className = 'form-message form-message-success';
+          msg.textContent = 'Message sent. We\'ll be in touch shortly.';
+          wrapper.appendChild(msg);
         } else {
           showMessage('Something went wrong. Please try again or call us.', 'error');
           btn.textContent = originalText;
