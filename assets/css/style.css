@@ -191,17 +191,16 @@ ul {
   transition: transform 0.3s, opacity 0.3s;
 }
 
-/* X animation when open */
-.menu-toggle:checked ~ .site-nav .hamburger span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+/* Hide lines when open, show × */
+.menu-toggle:checked ~ .site-nav .hamburger span {
+  display: none;
 }
 
-.menu-toggle:checked ~ .site-nav .hamburger span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle:checked ~ .site-nav .hamburger span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+.menu-toggle:checked ~ .site-nav .hamburger::after {
+  content: '×';
+  font-size: 28px;
+  line-height: 1;
+  color: var(--color-text);
 }
 
 /* Mobile menu — shown when checkbox is checked */
@@ -247,6 +246,7 @@ ul {
   color: var(--color-text);
   text-decoration: none;
   margin-left: 8px;
+  margin-right: 8px;
 }
 
 .site-nav .nav-phone:hover {
