@@ -221,8 +221,15 @@ ul {
   border-bottom: 1px solid var(--color-border);
 }
 
+.menu-toggle:checked ~ .site-nav .nav-links label {
+  display: block;
+  cursor: pointer;
+}
+
 .menu-toggle:checked ~ .site-nav .nav-links a {
+  display: block;
   font-size: 16px;
+  padding: 8px 0;
 }
 
 /* Nav overlay — click-away to close */
