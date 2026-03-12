@@ -13,6 +13,13 @@
     }, { passive: true });
   }
 
+  // --- Close mobile menu on nav link click ---
+  document.querySelectorAll('.nav-links a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      document.getElementById('menu-toggle').checked = false;
+    });
+  });
+
   // --- Contact form (Formspree) ---
   var contactForm = document.getElementById('contact-form');
   if (contactForm) {
