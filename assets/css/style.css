@@ -297,6 +297,7 @@ ul {
 
 .site-nav .nav-cta:hover {
   background: #7b60ec;
+  color: #fff;
   opacity: 1;
 }
 
@@ -666,6 +667,7 @@ ul {
 
 .btn:hover {
   background: #6a4fd4;
+  color: #fff;
   opacity: 1;
 }
 
@@ -695,8 +697,8 @@ ul {
   overflow: hidden;
   white-space: nowrap;
   padding: 7px 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 2px solid #111;
+  border-top: none;
+  border-bottom: 3px solid #111;
 }
 
 .ticker-track {
