@@ -781,7 +781,7 @@ ul {
   box-shadow: 5px 5px 0 #111;
   border-radius: 10px;
   padding: 24px 20px;
-  background: var(--color-bg);
+  background: var(--color-bg-alt);
   cursor: pointer;
   user-select: none;
   transition: box-shadow 1s ease, transform 1s ease;
@@ -842,7 +842,7 @@ ul {
   box-shadow: 5px 5px 0 #111;
   border-radius: 10px;
   padding: 24px 20px;
-  background: var(--color-bg);
+  background: var(--color-bg-alt);
   cursor: pointer;
   user-select: none;
   transition: box-shadow 1s ease, transform 1s ease;
@@ -996,7 +996,7 @@ ul {
   box-shadow: 5px 5px 0 #111;
   border-radius: 10px;
   margin-bottom: 16px;
-  background: var(--color-bg);
+  background: var(--color-bg-alt);
 }
 
 .faq-item:last-child {
