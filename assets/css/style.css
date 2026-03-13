@@ -31,7 +31,7 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Cabinet Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-text-secondary);
@@ -259,20 +259,21 @@ ul {
   justify-content: center;
   font-size: 14px;
   font-weight: 600;
-  color: var(--color-bg);
-  background: linear-gradient(135deg, rgb(218, 255, 233) 0%, rgb(123, 96, 236) 50%, rgb(60, 40, 140) 100%);
-  background-size: 200% 200%;
-  background-position: 0% 0%;
+  color: #fff;
+  background: #7b60ec;
   padding: 12px 24px;
-  border-radius: 3px;
+  border-radius: 8px;
+  border: 2px solid #111;
+  box-shadow: 4px 4px 0 #111;
+  transform: translate(0, 0);
   text-decoration: none;
   min-height: 48px;
-  transition: background-position 0.5s ease;
+  transition: box-shadow 0.08s ease, transform 0.08s ease;
 }
 
-.site-nav .nav-cta:hover {
-  background-position: 100% 100%;
-  color: #ffffff;
+.site-nav .nav-cta:active {
+  box-shadow: 0px 0px 0 #111;
+  transform: translate(4px, 4px);
 }
 
 /* --- Hero --- */
@@ -342,9 +343,10 @@ ul {
 .browser {
   width: 640px;
   max-width: 96vw;
-  border-radius: 8px 8px 6px 6px;
+  border-radius: 10px 10px 10px 10px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.12);
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0 #111;
   display: flex;
   flex-direction: column;
 }
@@ -618,23 +620,23 @@ ul {
   font-family: inherit;
   font-size: 15px;
   font-weight: 600;
-  color: var(--color-bg);
-  background: linear-gradient(135deg, rgb(218, 255, 233) 0%, rgb(123, 96, 236) 50%, rgb(60, 40, 140) 100%);
-  background-size: 200% 200%;
-  background-position: 0% 0%;
+  color: #fff;
+  background: #7b60ec;
   padding: 14px 32px;
-  border-radius: 3px;
-  border: none;
+  border-radius: 8px;
+  border: 2px solid #111;
+  box-shadow: 4px 4px 0 #111;
+  transform: translate(0, 0);
   text-decoration: none;
   cursor: pointer;
   min-height: 48px;
   line-height: 20px;
-  transition: background-position 0.5s ease;
+  transition: box-shadow 0.08s ease, transform 0.08s ease;
 }
 
-.btn:hover {
-  background-position: 100% 100%;
-  color: #ffffff;
+.btn:active {
+  box-shadow: 0px 0px 0 #111;
+  transform: translate(4px, 4px);
 }
 
 .btn-full {
@@ -685,6 +687,7 @@ ul {
 .section {
   padding: var(--space-section) 0;
   scroll-margin-top: 80px;
+  border-bottom: 2px solid #111;
 }
 
 .hero + .section {
@@ -737,6 +740,11 @@ ul {
 
 .feature-card {
   text-align: center;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0 #111;
+  border-radius: 10px;
+  padding: 24px 20px;
+  background: var(--color-bg);
 }
 
 .feature-icon {
@@ -777,6 +785,11 @@ ul {
 
 .step-card {
   text-align: center;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0 #111;
+  border-radius: 10px;
+  padding: 24px 20px;
+  background: var(--color-bg);
 }
 
 .step-illustration {
@@ -784,17 +797,24 @@ ul {
   height: 140px;
   object-fit: contain;
   margin: 0 auto 20px;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0 #111;
+  border-radius: 10px;
+  padding: 10px;
+  background: var(--color-bg);
 }
 
 .steps .step-num {
-  display: block;
-  font-size: 40px;
-  font-weight: 600;
-  background: linear-gradient(135deg, rgb(218, 255, 233) 0%, rgb(123, 96, 236) 50%, rgb(60, 40, 140) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: #7b60ec;
+  border: 2px solid #111;
+  box-shadow: 3px 3px 0 #111;
+  border-radius: 4px;
+  padding: 4px 12px;
+  line-height: 1.4;
   margin-bottom: 12px;
 }
 
@@ -908,16 +928,16 @@ ul {
 }
 
 .faq-item {
-  padding: 24px 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.faq-item:first-child {
-  padding-top: 0;
+  padding: 20px;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0 #111;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  background: var(--color-bg);
 }
 
 .faq-item:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .faq-q {
@@ -955,11 +975,13 @@ ul {
   font-size: 16px;
   padding: 12px 16px;
   min-height: 48px;
-  border: 1px solid var(--color-border);
-  border-radius: 2px;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 #111;
+  transform: translate(0, 0);
   background: var(--color-bg);
   color: var(--color-text);
-  transition: border-color 0.2s;
+  transition: box-shadow 0.08s ease, transform 0.08s ease;
 }
 
 .section-alt .form-field input {
@@ -968,7 +990,8 @@ ul {
 
 .form-field input:focus {
   outline: none;
-  border-color: var(--color-accent);
+  box-shadow: 0px 0px 0 #111;
+  transform: translate(2px, 2px);
 }
 
 .form-field input::placeholder {
@@ -987,17 +1010,20 @@ ul {
   font-family: inherit;
   font-size: 16px;
   padding: 12px 16px;
-  border: 1px solid var(--color-border);
-  border-radius: 2px;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 #111;
+  transform: translate(0, 0);
   background: var(--color-bg);
   color: var(--color-text);
-  transition: border-color 0.2s;
+  transition: box-shadow 0.08s ease, transform 0.08s ease;
   resize: none;
 }
 
 .form-field textarea:focus {
   outline: none;
-  border-color: var(--color-accent);
+  box-shadow: 0px 0px 0 #111;
+  transform: translate(2px, 2px);
 }
 
 .contact-form-col .btn {
@@ -1067,7 +1093,7 @@ ul {
 
 .site-footer {
   padding: var(--space-section) 0 40px;
-  border-top: 1px solid var(--color-border);
+  border-top: 2px solid #111;
 }
 
 .site-footer p {
@@ -1290,3 +1316,4 @@ ul {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
   opacity: 1;
 }
+
