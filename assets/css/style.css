@@ -649,7 +649,7 @@ ul {
   justify-content: center;
   font-family: inherit;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 800;
   color: #fff;
   background: #a78bfa;
   padding: 14px 32px;
@@ -1009,13 +1009,24 @@ ul {
   margin-bottom: 8px;
 }
 
+.faq-list {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 /* --- Contact --- */
+
+#contact .container {
+  text-align: left;
+}
+
+#contact h2 {
+  text-align: left;
+}
 
 .contact-layout {
   margin-top: var(--space-block);
   max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .form-field {
