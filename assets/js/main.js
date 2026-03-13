@@ -234,4 +234,41 @@
     setTimeout(function () { msg.remove(); }, 6000);
   }
 
+  // --- Sparkle trail on feature card click ---
+  var sparkleActive = false;
+  var sparkleTimer = null;
+
+  function createSparkle(x, y) {
+    var s = document.createElement('div');
+    s.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;width:6px;height:6px;border-radius:50%;background:#facc15;box-shadow:0 0 6px #facc15,0 0 12px #a78bfa;left:' + x + 'px;top:' + y + 'px;transition:all 0.6s ease-out;opacity:1;';
+    document.body.appendChild(s);
+    // random drift
+    var dx = (Math.random() - 0.5) * 30;
+    var dy = (Math.random() - 0.5) * 30 - 15;
+    requestAnimationFrame(function () {
+      s.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(0)';
+      s.style.opacity = '0';
+    });
+    setTimeout(function () { s.remove(); }, 600);
+  }
+
+  function onSparkleMove(e) {
+    if (!sparkleActive) return;
+    createSparkle(e.clientX, e.clientY);
+  }
+
+  document.querySelectorAll('.feature-card, .step-card, .faq-item').forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      sparkleActive = true;
+      // burst of sparkles at click point
+      for (var i = 0; i < 8; i++) {
+        createSparkle(e.clientX + (Math.random() - 0.5) * 20, e.clientY + (Math.random() - 0.5) * 20);
+      }
+      clearTimeout(sparkleTimer);
+      sparkleTimer = setTimeout(function () { sparkleActive = false; }, 1000);
+    });
+  });
+
+  document.addEventListener('mousemove', onSparkleMove, { passive: true });
+
 })();

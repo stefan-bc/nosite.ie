@@ -997,6 +997,14 @@ ul {
   border-radius: 10px;
   margin-bottom: 16px;
   background: var(--color-bg-alt);
+  cursor: pointer;
+  transition: box-shadow 1s ease, transform 1s ease;
+}
+
+.faq-item:active {
+  box-shadow: 0 0 0 #111;
+  transform: translate(5px, 5px);
+  transition: box-shadow 0.05s ease, transform 0.05s ease;
 }
 
 .faq-item:last-child {
