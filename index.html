@@ -146,8 +146,7 @@
       transition: opacity 0.2s;
     }
     .btn:hover { opacity: 0.85; }
-    .hero-image-center { margin-top: 8px; margin-bottom: -16px; text-align: center; }
-    .hero-image-center img { display: block; max-width: 320px; height: auto; margin: 0 auto; }
+    .hero-browser-wrap { margin-top: 24px; margin-bottom: -16px; display: flex; justify-content: center; }
     .menu-toggle { display: none; }
     .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; padding: 8px; background: none; border: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
     .hamburger span { display: block; width: 100%; height: 2px; background: var(--color-text); border-radius: 1px; }
@@ -188,10 +187,83 @@
         <h1><strong style="font-size:110%">Need a website?</strong><br><span class="marker-underline">&euro;29/month. We handle everything.</span></h1>
         <p class="subline">No setup fee. No contract. Dead simple.</p>
         <a href="#contact" class="btn">Get started</a>
-        <br>  <br>
       </div>
-      <div class="hero-image hero-image-center">
-        <img src="assets/images/put-on-map.png" alt="Put your business on the map" width="360" height="280">
+      <!-- Browser animation — cycles through example sites -->
+      <div class="hero-browser-wrap">
+        <div class="browser">
+          <div class="chrome-tabs">
+            <div class="browser-dots">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <div class="tab tab-active">
+              <div class="tab-favicon" id="tab-fav">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7c6fe0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="4" r="2"/><path d="M12 15c-2-2.5-4-3.5-3.5-6s3-3 4.5-1 3 4.5 1 7.5z"/>
+                </svg>
+              </div>
+              <span class="tab-title" id="tab-title">Dublin Dog Handler</span>
+              <span class="tab-x">&times;</span>
+            </div>
+            <div class="tab tab-inactive">
+              <span class="tab-title" style="color:#80868b">New Tab</span>
+            </div>
+          </div>
+          <div class="chrome-toolbar">
+            <div class="nav-btn dim"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></div>
+            <div class="nav-btn dim"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="nav-btn"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div>
+            <div class="omnibox">
+              <div class="omnibox-lock"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+              <span class="omnibox-url"><em>https://</em><span id="omni-url">dublinsdoghandler.ie</span></span>
+              <div class="omnibox-progress" id="omni-bar"></div>
+            </div>
+          </div>
+          <div class="viewport">
+            <div class="page" id="page">
+              <div class="s-nav">
+                <div class="s-logo" id="s-logo">Dublin Dog Handler</div>
+                <span class="s-link">Services</span>
+                <span class="s-link">About</span>
+                <span class="s-link">Prices</span>
+                <span class="s-link">Contact</span>
+                <div class="s-cta" id="s-cta">Book now</div>
+              </div>
+              <div class="s-hero">
+                <div class="s-hero-left">
+                  <div class="s-badge" id="s-badge">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                    <span id="s-badge-txt">Available Mon–Fri</span>
+                  </div>
+                  <div class="s-h1">
+                    <span id="h-l1"></span>
+                    <span id="h-l2"></span>
+                  </div>
+                  <div class="s-sub" id="s-sub">Fully insured · 5★ on Google · All Dublin areas</div>
+                  <div class="s-actions">
+                    <div class="s-btn" id="s-btn">Book a session</div>
+                    <div class="s-btn-ghost">
+                      <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                      How it works
+                    </div>
+                  </div>
+                </div>
+                <div class="s-illus">
+                  <div class="s-illus-bg" id="s-illus-bg"></div>
+                  <svg class="s-illus-svg" id="s-illus-svg" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg"></svg>
+                </div>
+              </div>
+              <div class="s-proof">
+                <div class="s-proof-item"><div class="s-proof-val" id="pv0">200+</div><div class="s-proof-text" id="pt0">happy dogs</div></div>
+                <div class="s-proof-item"><div class="s-proof-val" id="pv1">5.0★</div><div class="s-proof-text" id="pt1">avg rating</div></div>
+                <div class="s-proof-item"><div class="s-proof-val" id="pv2">6 yrs</div><div class="s-proof-text" id="pt2">experience</div></div>
+                <div class="s-proof-item"><div class="s-proof-val" id="pv3">Insured</div><div class="s-proof-text" id="pt3">fully covered</div></div>
+              </div>
+              <div class="s-cards" id="s-cards"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>  
   </section>
