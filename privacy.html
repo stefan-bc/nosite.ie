@@ -12,68 +12,59 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&f[]=general-sans@600,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
+  <!-- Nav -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-hidden="true">
   <nav class="site-nav">
     <div class="container">
       <a href="index.html" class="wordmark">nosite.ie</a>
       <div class="nav-right">
-        <a href="tel:+353831613789" class="nav-phone">083 161 3789</a>
-        <a href="index.html#contact" class="nav-cta">Get started</a>
+        <ul class="nav-links">
+          <li><a href="index.html#how-it-works">How it works</a></li>
+          <li><a href="index.html#what-you-get">What you get</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+        <a href="index.html#contact" class="nav-cta">Get in touch</a>
+        <a href="tel:+353831613789" class="nav-phone" aria-label="Call us">
+          <svg class="nav-phone-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+        <label for="menu-toggle" class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </label>
       </div>
     </div>
   </nav>
+  <label for="menu-toggle" class="nav-overlay"></label>
 
   <section class="legal-section">
     <div class="container">
       <div class="text-block">
         <h1>Privacy Policy</h1>
-        <p class="legal-date">Last updated: 4 March 2026</p>
+        <p class="legal-date">Last updated: 20 March 2026</p>
 
-        <h4>1. Who We Are</h4>
-        <p>Nosite ("we", "us", "our") is a web design and hosting service operated from Dublin, Ireland. We are the data controller for the personal data we collect through our website and services. You can contact us at <a href="mailto:hello@nosite.ie">hello@nosite.ie</a>.</p>
+        <h4>Who we are</h4>
+        <p>Nosite is a web design and hosting service operated from Dublin, Ireland. You can contact us at <a href="mailto:hello@nosite.ie">hello@nosite.ie</a>.</p>
 
-        <h4>2. What Data We Collect</h4>
-        <p>We collect the following personal data when you use our contact form or engage our services: your name and business name, email address, phone number (if provided), information about your business, and any additional information you choose to share.</p>
-        <p>We may also collect technical data automatically, including your IP address, browser type, and pages visited, through standard server logs.</p>
+        <h4>What we collect</h4>
+        <p>The only personal data we collect is what you submit through our contact form: your name, email address, phone number, and message. We do not store any data on our own servers. There are no user accounts, no cookies, and no server-side tracking.</p>
 
-        <h4>3. How We Use Your Data</h4>
-        <p>We use your personal data to respond to your enquiries, provide, maintain, and improve our services, process payments and manage your subscription, send service-related communications, and comply with legal obligations.</p>
-        <p>We do not use your data for marketing purposes unless you have given explicit consent.</p>
+        <h4>How it's processed</h4>
+        <p>Your contact form submission is handled by Formspree, a third-party form service. We use the information solely to respond to your enquiry. We also use Umami, a privacy-focused analytics tool that collects anonymous page-view statistics without cookies or personal data.</p>
 
-        <h4>4. Legal Basis for Processing</h4>
-        <p>Under the General Data Protection Regulation (GDPR), we process your personal data on the following legal bases: contract (processing necessary to provide the services you have requested), legitimate interest (to improve our services and respond to enquiries), legal obligation (to comply with applicable laws and regulations), and consent (where you have given specific consent for a particular purpose).</p>
+        <h4>Sharing</h4>
+        <p>We do not sell, rent, or share your personal data with anyone. The only third parties involved are Formspree (form delivery) and Umami (anonymous analytics). Neither receives personally identifiable information beyond what is necessary to operate.</p>
 
-        <h4>5. Data Sharing</h4>
-        <p>We do not sell your personal data. We may share your data with trusted third-party service providers who assist us in operating our business, such as hosting providers and payment processors. These providers are contractually obligated to protect your data and may only use it for the purposes we specify.</p>
+        <h4>Your rights</h4>
+        <p>Under the GDPR and the Irish Data Protection Act 2018, you can ask us to show, correct, or delete any personal data we hold. Email <a href="mailto:hello@nosite.ie">hello@nosite.ie</a> and we will respond within 30 days. You also have the right to lodge a complaint with the Irish Data Protection Commission.</p>
 
-        <h4>6. Data Retention</h4>
-        <p>We retain your personal data for as long as necessary to provide our services and fulfil the purposes described in this policy. Contact form submissions are retained for up to 12 months. Client data is retained for the duration of the subscription and for up to 24 months after cancellation, unless a longer retention period is required by law.</p>
-
-        <h4>7. Cookies</h4>
-        <p>Our website uses only essential cookies required for the site to function. We do not use tracking cookies, advertising cookies, or analytics cookies that collect personal data.</p>
-
-        <h4>8. Your Rights</h4>
-        <p>Under the GDPR and the Irish Data Protection Act 2018, you have the right to access the personal data we hold about you, request correction of inaccurate data, request deletion of your data, object to or restrict the processing of your data, data portability, and withdraw consent at any time (where processing is based on consent).</p>
-        <p>To exercise any of these rights, please contact us at <a href="mailto:hello@nosite.ie">hello@nosite.ie</a>. We will respond within 30 days.</p>
-
-        <h4>9. Data Security</h4>
-        <p>We take reasonable technical and organisational measures to protect your personal data against unauthorised access, loss, or misuse. However, no method of transmission over the internet is completely secure, and we cannot guarantee absolute security.</p>
-
-        <h4>10. Children's Data</h4>
-        <p>Our services are not directed at individuals under the age of 18. We do not knowingly collect personal data from children.</p>
-
-        <h4>11. Changes to This Policy</h4>
-        <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated revision date. Continued use of our services following any changes constitutes acceptance of the revised policy.</p>
-
-        <h4>12. Complaints</h4>
-        <p>If you are unhappy with how we have handled your personal data, you have the right to lodge a complaint with the Data Protection Commission (DPC), Ireland's supervisory authority for data protection.</p>
-
-        <h4>13. Contact</h4>
-        <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:hello@nosite.ie">hello@nosite.ie</a>.</p>
+        <h4>Changes</h4>
+        <p>If we update this policy, we will revise the date above. Continued use of the site after changes constitutes acceptance.</p>
 
         <a href="index.html" class="back-link">&larr; Back to home</a>
       </div>
@@ -83,7 +74,7 @@
   <footer class="site-footer">
     <div class="container">
       <p class="footer-brand">nosite.ie</p>
-      <p>Built in Dublin for Irish businesses.</p>
+      <p>Built with <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#111" stroke="none" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> in Dublin, Ireland.</p>
       <p><a href="tel:+353831613789">+353 83 161 3789</a> &middot; <a href="mailto:hello@nosite.ie">hello@nosite.ie</a></p>
       <p><a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></p>
     </div>
